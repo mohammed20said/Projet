@@ -1,0 +1,35 @@
+<div class="mt-4">
+
+    <div class="d-flex justify-content-end">
+        <button class="addTask btn btn-primary mr-2" (click)="addBesoin()">Add Besoin</button>
+    </div>
+
+    <form>
+        <div class="row mt-3">
+
+        </div>
+    </form>
+
+    <div class="listBox mt-3">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100">
+            <!-- Columns based on your data structure -->
+            <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+                <th mat-header-cell *matHeaderCellDef> {{ column }} </th>
+                <td mat-cell *matCellDef="let element"> {{ element[column] }} </td>
+            </ng-container>
+
+            <!-- Add Actions Column -->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element">
+                    <button class="btn btn-info btn-sm mr-1" (click)="editBesoin(element)">Edit</button>
+                    <button class="btn btn-danger btn-sm" (click)="deleteBesoin(element.besoinId)">Delete</button>
+                </td>
+            </ng-container>
+
+            <!-- Column definitions end -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns.concat('actions')"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns.concat('actions');"></tr>
+        </table>
+    </div>
+</div>
